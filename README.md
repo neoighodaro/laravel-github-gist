@@ -1,9 +1,9 @@
 # Simple GitHub Gist API
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/neoighodaro/gist.svg?style=flat-square)](https://packagist.org/packages/neoighodaro/gist)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/neoighodaro/gist/run-tests?label=tests)](https://github.com/neoighodaro/gist/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/neoighodaro/gist/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/neoighodaro/gist/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/neoighodaro/gist.svg?style=flat-square)](https://packagist.org/packages/neoighodaro/gist)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/neoighodaro/laravel-github-gist.svg?style=flat-square)](https://packagist.org/packages/neoighodaro/laravel-github-gist)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/neoighodaro/laravel-github-gist/run-tests?label=tests)](https://github.com/neoighodaro/laravel-github-gist/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/neoighodaro/laravel-github-gist/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/neoighodaro/gist/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/neoighodaro/laravel-github-gist.svg?style=flat-square)](https://packagist.org/packages/neoighodaro/laravel-github-gist)
 
 A simple Package to work with the GitHub Gist API.
 
