@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Neo\Gist\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Neo\Gist\GistServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
