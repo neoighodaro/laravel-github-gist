@@ -1,5 +1,5 @@
 {
-    "name": "neoighodaro/gist",
+    "name": "neo/laravel-github-gist",
     "description": "Simple GitHub Gist API",
     "keywords": [
         "neoighodaro",
@@ -17,8 +17,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/contracts": "^9.0"
+        "ext-zip": "*",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/contracts": "^9.0",
+        "spatie/laravel-data": "^2.0",
+        "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -60,10 +63,7 @@
         "laravel": {
             "providers": [
                 "Neo\\Gist\\GistServiceProvider"
-            ],
-            "aliases": {
-                "Gist": "Neo\\Gist\\Facades\\Gist"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
