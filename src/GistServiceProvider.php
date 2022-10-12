@@ -26,7 +26,6 @@ class GistServiceProvider extends PackageServiceProvider
         $this->app->bind(Gist::class, fn () => new Gist(
             app(GistClient::class),
             app(Factory::class)->disk(Config::get('gist.disk')),
-            app(Factory::class)->disk('local'),
         ));
 
         $this->app->alias(Gist::class, 'laravel-github-gist');

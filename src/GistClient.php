@@ -28,6 +28,9 @@ class GistClient
         return $this;
     }
 
+    /**
+     * @throws \Neo\Gist\Exception\GistClientException
+     */
     public function getGist(string $id): array
     {
         $cacheName = $this->determineCacheName(func_get_args());
@@ -49,6 +52,9 @@ class GistClient
         });
     }
 
+    /**
+     * @throws \Neo\Gist\Exception\GistClientException
+     */
     public function getPublicGists(): array
     {
         $cacheName = $this->determineCacheName(['method' => 'getPublicGists']);

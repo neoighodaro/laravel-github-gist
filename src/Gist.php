@@ -37,11 +37,17 @@ class Gist
         return $this;
     }
 
+    /**
+     * @throws \Neo\Gist\Exception\GistClientException
+     */
     public function get(string $gistId): GistData
     {
         return GistData::from($this->client->getGist($gistId));
     }
 
+    /**
+     * @throws \Neo\Gist\Exception\GistClientException
+     */
     public function getPublic(): DataCollection
     {
         return GistData::collection($this->client->getPublicGists());
@@ -74,7 +80,12 @@ class Gist
         $this->storage->writeStream($fileName, fopen($zipPath, 'r'));
         $this->localStorage->delete($fileName);
 
-        return $fileName;
+        return $this->storage->path($fileName);
+    }
+
+    public function fileExists(string $path): bool
+    {
+        return $this->storage->exists($path);
     }
 
     public function getStorageFileName(GistData $gist): string
