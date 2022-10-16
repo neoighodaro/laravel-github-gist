@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
+use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
-use Illuminate\Contracts\Filesystem\Factory;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class GistServiceProvider extends PackageServiceProvider
