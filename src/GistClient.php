@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Support\Facades\Http;
 use Neo\Gist\Exception\GistClientException;
 
 class GistClient

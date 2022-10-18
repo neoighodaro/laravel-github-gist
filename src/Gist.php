@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use ZipArchive;
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Neo\Gist\Data\GistData;
 use Neo\Gist\Data\GistFileData;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Config;
-use Spatie\LaravelData\DataCollection;
-use Illuminate\Support\Facades\Storage;
 use Neo\Gist\Exception\GistSaveException;
-use Illuminate\Filesystem\FilesystemAdapter;
+use Spatie\LaravelData\DataCollection;
+use ZipArchive;
 
 class Gist
 {
