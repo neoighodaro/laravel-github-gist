@@ -75,6 +75,7 @@ class Gist
             static fn (string $url, string $fileName) => $zip->addFromString($fileName, Http::get($url)->body())
         );
 
+        $zip->addFromString('.gitkeep', '');
         $zip->close();
 
         $this->storage->writeStream($fileName, fopen($zipPath, 'r'));
