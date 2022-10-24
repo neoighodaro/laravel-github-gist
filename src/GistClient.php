@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Illuminate\Contracts\Cache\Repository;
 use Neo\Gist\Concerns\HasCacheableClient;
+use Illuminate\Contracts\Cache\Repository;
 use Neo\Gist\Exception\GistClientException;
-use Neo\Gist\Exception\GitHubClientException;
+use Neo\Gist\Exception\GithubClientException;
 
 class GistClient
 {
@@ -34,7 +34,7 @@ class GistClient
                 $this->baseUrl.'/'.$id,
                 $this->determineCacheName([$id])
             );
-        } catch (GitHubClientException $e) {
+        } catch (GithubClientException $e) {
             throw new GistClientException($e->response);
         }
     }
@@ -49,7 +49,7 @@ class GistClient
                 $this->baseUrl,
                 $this->determineCacheName(['method' => 'getPublicGists'])
             );
-        } catch (GitHubClientException $e) {
+        } catch (GithubClientException $e) {
             throw new GistClientException($e->response);
         }
     }

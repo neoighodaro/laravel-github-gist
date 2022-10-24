@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Neo\Gist\Data;
 
-use Illuminate\Support\Carbon;
 use RuntimeException;
-use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
+use Illuminate\Support\Carbon;
+use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapInputName(SnakeCaseMapper::class)]
