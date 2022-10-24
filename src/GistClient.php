@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Neo\Gist\Concerns\HasCacheableClient;
 use Illuminate\Contracts\Cache\Repository;
+use Neo\Gist\Concerns\HasCacheableClient;
 use Neo\Gist\Exception\GistClientException;
 use Neo\Gist\Exception\GitHubClientException;
 
