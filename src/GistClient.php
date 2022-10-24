@@ -4,28 +4,24 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
+use Neo\Gist\Concerns\HasCacheableClient;
 use Illuminate\Contracts\Cache\Repository;
-use Illuminate\Support\Facades\Http;
 use Neo\Gist\Exception\GistClientException;
+use Neo\Gist\Exception\GitHubClientException;
 
 class GistClient
 {
+    use HasCacheableClient;
+
     protected int $cacheLifeTimeInMinutes = 0;
 
     protected string $baseUrl = 'https://api.github.com/gists';
 
-    public function __construct(
-        protected readonly array $config,
-        protected readonly Repository $cache
-    ) {
-        $this->setCacheLifeTimeInMinutes(intval($config['cache_lifetime'] ?? 0));
-    }
-
-    public function setCacheLifeTimeInMinutes(int $cacheLifeTimeInMinutes): self
+    public function __construct(protected readonly array $config, Repository $cache)
     {
-        $this->cacheLifeTimeInMinutes = $cacheLifeTimeInMinutes * 60;
+        $this->cache = $cache;
 
-        return $this;
+        $this->setCacheLifeTimeInMinutes(intval($config['cache_lifetime'] ?? 0));
     }
 
     /**
@@ -33,23 +29,14 @@ class GistClient
      */
     public function getGist(string $id): array
     {
-        $cacheName = $this->determineCacheName(func_get_args());
-
-        if ($this->cacheLifeTimeInMinutes === 0) {
-            $this->cache->forget($cacheName);
-        }
-
-        return $this->cache->remember($cacheName, $this->cacheLifeTimeInMinutes, function () use ($id) {
-            $response = Http::withHeaders($this->headers())->get(
-                sprintf('%s/%s', $this->baseUrl, $id)
+        try {
+            return $this->getCachedRequest(
+                $this->baseUrl.'/'.$id,
+                $this->determineCacheName([$id])
             );
-
-            if ($response->status() === 200 || $response->status() === 304) {
-                return $response->json();
-            }
-
-            throw new GistClientException($response);
-        });
+        } catch (GitHubClientException $e) {
+            throw new GistClientException($e->response);
+        }
     }
 
     /**
@@ -57,37 +44,13 @@ class GistClient
      */
     public function getPublicGists(): array
     {
-        $cacheName = $this->determineCacheName(['method' => 'getPublicGists']);
-
-        if ($this->cacheLifeTimeInMinutes === 0) {
-            $this->cache->forget($cacheName);
+        try {
+            return $this->getCachedRequest(
+                $this->baseUrl,
+                $this->determineCacheName(['method' => 'getPublicGists'])
+            );
+        } catch (GitHubClientException $e) {
+            throw new GistClientException($e->response);
         }
-
-        return $this->cache->remember($cacheName, $this->cacheLifeTimeInMinutes, function () {
-            $response = Http::withHeaders($this->headers())->get($this->baseUrl);
-
-            if ($response->status() === 200 || $response->status() === 304) {
-                return $response->json();
-            }
-
-            throw new GistClientException($response);
-        });
-    }
-
-    protected function headers(): array
-    {
-        $token = $this->config['token'] ?? null;
-        $headers = ['Accept' => 'application/vnd.github+json'];
-
-        if ($token) {
-            $headers['Authorization'] = sprintf('Bearer %s', $token);
-        }
-
-        return $headers;
-    }
-
-    protected function determineCacheName(array $properties): string
-    {
-        return 'neo.laravel-github-gist.'.md5(serialize($properties));
     }
 }

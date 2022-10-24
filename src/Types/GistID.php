@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Neo\Gist\Types;
 
 use Illuminate\Support\Arr;
@@ -7,7 +9,7 @@ use InvalidArgumentException;
 
 final class GistID
 {
-    public function __construct(protected readonly string $value)
+    protected function __construct(protected readonly string $value)
     {
     }
 

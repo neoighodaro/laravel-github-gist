@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Illuminate\Contracts\Filesystem\Factory;
+use Neo\Gist\GitHubClient;
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
+use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Contracts\Filesystem\Factory;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class GistServiceProvider extends PackageServiceProvider
@@ -29,5 +31,17 @@ class GistServiceProvider extends PackageServiceProvider
         ));
 
         $this->app->alias(Gist::class, 'laravel-github-gist');
+
+        $this->app->bind(
+            GitHubClient::class,
+            static fn () => new GitHubClient(Config::get('gist'), app(Repository::class))
+        );
+
+        $this->app->bind(GitHub::class, fn () => new GitHub(
+            app(GitHubClient::class),
+            app(Factory::class)->disk(Config::get('gist.disk')),
+        ));
+
+        $this->app->alias(GitHub::class, 'laravel-github');
     }
 }
