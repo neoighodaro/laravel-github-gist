@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Neo\Gist;
 
 use Neo\Gist\Data\GitHubData;
+use Neo\Gist\Types\GitHubRepoUrl;
 use Illuminate\Support\Facades\Config;
-use Spatie\LaravelData\DataCollection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\FilesystemAdapter;
-use Neo\Gist\Types\GitHubRepoUrl;
 
 final class GitHub
 {
@@ -35,5 +34,10 @@ final class GitHub
     public function get(GitHubRepoUrl $url): GitHubData
     {
         return GitHubData::from($this->client->getRepo($url));
+    }
+
+    public function getDownloadUrl(string $url): string
+    {
+        return $this->get(GitHubRepoUrl::fromUrl($url))->getZipUrl();
     }
 }

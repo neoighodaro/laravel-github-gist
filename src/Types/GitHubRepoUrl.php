@@ -16,12 +16,12 @@ final class GitHubRepoUrl
 
     public static function fromUrl(string $url): self
     {
-        return GitHubRepoUrl::usingRegex('/^https?:\/\/(www\.)?github.com\/(?<owner>[\w.-]+)\/(?<repo>[\w.-]+)/', $url);
+        return self::usingRegex('/^https?:\/\/(www\.)?github.com\/(?<owner>[\w.-]+)\/(?<repo>[\w.-]+)/', $url);
     }
 
     public static function fromPath(string $path): self
     {
-        return GitHubRepoUrl::usingRegex('/^(?<owner>[\w.-]+)\/(?<repo>[\w.-]+)/', $path);
+        return self::usingRegex('/^(?<owner>[\w.-]+)\/(?<repo>[\w.-]+)/', $path);
     }
 
     protected static function usingRegex(string $pattern, string $subject): self
@@ -39,9 +39,9 @@ final class GitHubRepoUrl
 
         $path = $owner.'/'.$repo;
 
-        return new GitHubRepoUrl(
-            path: $path,
+        return new self(
             url: filter_var($subject, FILTER_VALIDATE_URL) ? $subject : 'https://github.com/'.$path,
+            path: $path,
         );
     }
 }
