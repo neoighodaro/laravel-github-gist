@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Illuminate\Filesystem\FilesystemAdapter;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Storage;
 use Neo\Gist\Data\GitHubData;
 use Neo\Gist\Types\GitHubRepoUrl;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Filesystem\FilesystemAdapter;
 
 final class GitHub
 {

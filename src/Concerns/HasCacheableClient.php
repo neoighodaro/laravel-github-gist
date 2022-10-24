@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Neo\Gist\Concerns;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
 use Neo\Gist\Exception\GithubClientException;
 use Symfony\Component\HttpFoundation\Response;
 
