@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Neo\Gist\Data;
 
-use Illuminate\Support\Carbon;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
+use Illuminate\Support\Carbon;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\LaravelData\Attributes\DataCollectionOf;
 
 #[MapInputName(SnakeCaseMapper::class)]
 final class GistData extends Data

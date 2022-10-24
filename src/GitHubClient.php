@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Neo\Gist;
 
-use Illuminate\Contracts\Cache\Repository;
-use Neo\Gist\Concerns\HasCacheableClient;
 use Neo\Gist\Types\GitHubRepoUrl;
+use Neo\Gist\Concerns\HasCacheableClient;
+use Illuminate\Contracts\Cache\Repository;
 
 final class GitHubClient
 {
